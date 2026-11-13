@@ -95,3 +95,17 @@ class BSTIndex:
             result.append(node.key)
             node = node.right
         return result
+        
+bst = BSTIndex()
+
+bst.insert(50)
+bst.insert(30)
+bst.insert(70)
+bst.insert(20)
+bst.insert(40)
+
+print("BST values:", bst.inorder())
+print("Search 30:", bst.search(30))
+print("Search 100:", bst.search(100))
+print("Range 20-50:", bst.range_query(20, 50))
+print("Height:", bst.height())
