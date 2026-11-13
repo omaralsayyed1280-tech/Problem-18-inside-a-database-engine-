@@ -1,6 +1,6 @@
 """Experiment 2: compare BST, B-Tree degrees, and LSM index performance.
 
-Omar's responsibility is the BST implementation and the combined index benchmark.
+The BST implementation and the combined index benchmark.
 The official group project supplies the shared B-Tree and LSM implementations.
 All timings are in-memory Python timings, not physical SSD measurements.
 """
