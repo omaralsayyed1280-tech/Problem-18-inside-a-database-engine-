@@ -1,3 +1,4 @@
+
 """V3: Pointer-based Binary Search Tree index for Problem 18."""
 
 
@@ -17,7 +18,7 @@ class BSTIndex:
         self.root = None
 
     def insert(self, key):
-        """Insert a key. Duplicate keys are ignored. Average O(log N) for random order; worst O(N)."""
+        """Insert a key. Duplicate keys are ignored."""
         if self.root is None:
             self.root = BSTNode(key)
             return
@@ -37,7 +38,7 @@ class BSTIndex:
             node = child
 
     def search(self, key):
-        """Return True if key exists, otherwise False. Time O(h)."""
+        """Return True if key exists, otherwise False."""
         node = self.root
         while node is not None:
             if key == node.key:
@@ -46,7 +47,7 @@ class BSTIndex:
         return False
 
     def range_query(self, low, high):
-        """Return all keys in inclusive range [low, high], in ascending order."""
+        """Return all keys in inclusive range [low, high]."""
         result = []
         stack = []
         node = self.root
@@ -66,7 +67,7 @@ class BSTIndex:
         return result
 
     def height(self):
-        """Return maximum root-to-leaf edge count; empty tree is -1, leaf root is 0."""
+        """Return maximum root-to-leaf edge count."""
         if self.root is None:
             return -1
 
@@ -83,7 +84,7 @@ class BSTIndex:
         return level
 
     def inorder(self):
-        """Return every key in ascending order; useful for tests and debugging."""
+        """Return every key in ascending order."""
         result = []
         stack = []
         node = self.root
@@ -95,17 +96,36 @@ class BSTIndex:
             result.append(node.key)
             node = node.right
         return result
-        
+
+
+# Interactive terminal
 bst = BSTIndex()
 
-bst.insert(50)
-bst.insert(30)
-bst.insert(70)
-bst.insert(20)
-bst.insert(40)
+while True:
+    command = input("BST> ").split()
 
-print("BST values:", bst.inorder())
-print("Search 30:", bst.search(30))
-print("Search 100:", bst.search(100))
-print("Range 20-50:", bst.range_query(20, 50))
-print("Height:", bst.height())
+    if not command:
+        continue
+
+    if command[0] == "insert" and len(command) == 2:
+        bst.insert(int(command[1]))
+        print("Inserted")
+
+    elif command[0] == "search" and len(command) == 2:
+        print(bst.search(int(command[1])))
+
+    elif command[0] == "range" and len(command) == 3:
+        print(bst.range_query(int(command[1]), int(command[2])))
+
+    elif command[0] == "height":
+        print(bst.height())
+
+    elif command[0] == "inorder":
+        print(bst.inorder())
+
+    elif command[0] == "exit":
+        break
+
+    else:
+        print("Invalid command")
+
